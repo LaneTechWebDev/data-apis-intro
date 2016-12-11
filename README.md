@@ -12,4 +12,4 @@ No matter which data APIs we use, we'll need to programmatically work with the d
 
 (A quick explanation of JSON syntax is at http://www.w3schools.com/js/js_json_syntax.asp .)
 
-For a little practice in working with JSON objects, take a look at [simpleJSONexample.html](./simpleJSONexample.html) .  Open the page, open the JavaScript console, and try the examples. 
+For a little practice in working with JSON objects, take a look at [simpleJSONexample.html](https://lanetechwebdev.github.io/data-apis-intro//simpleJSONexample.html) .  Open the page, open the JavaScript console, and try the examples. 
