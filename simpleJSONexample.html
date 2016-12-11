@@ -13,7 +13,7 @@
     <p>A script on this page makes a call to the City of Chicago Data Portal to get Food Inspection data for zip 60618 for the 4th quarter of 2016.  The results are logged to the console and are stored as a variable named <strong>inspections</strong>;  you can practice some array commands against that variable in the console.
     </p>
     
-    <p> Here are some you can try;  see if you can guess what they will show before running them.
+    <p> Here are some you can try (copy and paste them in the console), but see if you can guess what they will show before running them.
         
     </p>
     <ol>
@@ -25,11 +25,23 @@
         <li><pre>inspections[0].dba_name;</pre></li>
         <li><pre>inspections[0]["dba_name"];</pre>
         (We can use either syntax to reference a property.)</li>
-        <li><pre>$.each(inspections, function (index, value) { console.log(index) } );</pre></li>
-        <li><pre>$.each(inspections, function (i, v) { console.log(i) } );</pre></li>
-        <li><pre>$.each(inspections, function (chocolate_ice_cream, v) { console.log(chocolate_ice_cream) } );</pre>
+        <li><pre>$.each(inspections, 
+        function (index, value) { 
+            console.log(index) 
+        } );</pre></li>
+        <li><pre>$.each(inspections, 
+        function (i, v) { 
+            console.log(i) 
+        } );</pre></li>
+        <li><pre>$.each(inspections, 
+        function (chocolate_ice_cream, v) { 
+            console.log(chocolate_ice_cream) 
+        } );</pre>
         The point is that the computer doesn't care <em>what</em> you name your variables, but meaningful variable names sure make code easier to understand.</li>        
-        <li><pre>$.each(inspections, function (index, value) { console.log(value.dba_name + ': ' + value.address) } );</pre></li> 
+        <li><pre>$.each(inspections, 
+        function (index, value) { 
+            console.log(value.dba_name + ': ' + value.address) 
+        } );</pre></li> 
     </ol>
     <hr>
     <p>The data we get back from APIs like the City of Chicago data portal can be very complex, with arrays and objects nested inside of each other, and each API will return data in a different structure.  But we can access any property at any level, <em>if</em> we know how to refer to them.
