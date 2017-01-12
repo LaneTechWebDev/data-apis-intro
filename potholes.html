@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Open 311 Pothole Requests</title>
+        <style>
+            p, h1 {font-family: helvetica;}
+            p {font-size:1.5em;line-height:1.5em; margin-left: 24px;}
+            pre {font-size: 2em;}
+            
+            div {background-color:lightgray; border: 1px solid black; border-radius: 6px;}
+            
+            .Pass {background-color: green;}
+            .Fail {background-color: red;}
+        </style>
+    </head>
+    <body>
+    <h1>Open 311 Pothole Requests for zip 60645</h1>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        /*
+            This script retrieves 311 pothole requests for zip 60645
+        */
+        
+        //  variable to hold the returned data
+        var inspections;
+        
+        // base URL 
+        var baseURL = 'https://data.cityofchicago.org/resource/787j-mys9.json';
+        
+        // optional filters we're appending - zip and status
+        var filters = '?zip=60645&status=Open';
+        
+        // full URL
+        var url = baseURL + filters;
+        
+        console.log (url);
+        
+        $(
+            // jQuery command to retrieve json data
+            
+            $.getJSON(url)
+                .done (function (data) {
+                    
+                    console.log(data);
+                    
+                    // loop through the records
+                    $.each (data , 
+                        function (index, value) {
+                            // append content to the body 
+                            var html = "<div>"
+                                + "<h2>" 
+                                + value.type_of_service_request 
+                                + "</h2>"
+                                + "<p>" 
+                                + value.street_address 
+                                + "<br>"
+                                + "Status: " 
+                                + value.status
+                                + "<br>"
+                                + "Service Request Number: "
+                                + value.service_request_number
+                                + "<br>"
+                                + value.creation_date
+                                + "</p>"
+                                + "</div>";
+                           
+                           
+                            $("body").append(html);
+                        }
+                    );
+
+                })
+
+        )
+        
+        
+    </script>
+    </body>
+</html>

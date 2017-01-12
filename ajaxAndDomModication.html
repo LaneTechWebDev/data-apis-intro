@@ -23,6 +23,8 @@
     </ul>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="URL_OF_YOUR_SCRIPT?start=1325437200&end=1325439000&prefix=alert"></script>
+    
     <script>
         /*
             This script retrieves food inspection data for zip 60618
@@ -35,26 +37,21 @@
         
         
         */
-        //  variable to hold the returned data
-        var inspections;
+
+
+        var url = 'https://script.google.com/macros/s/AKfycbwM0UOYUF3DvSJW4qHaATxRx3NGyVef3hbbNY6a4W6usENnXdDZ/exec';
         
-        // base URL to the food inspections data
-        var inspectionsBaseURL = 'https://data.cityofchicago.org/resource/cwig-ma7x.json';
-        
-        // optional filters we're appending - date range and zip
-        var filters = '?$where=inspection_date%20between%20%272016-10-01T00:00:00%27%20and%20%272017-01-01T00:00:00%27%20and%20zip=60618';
-        
-        // full URL
-        var inspectionsUrl = inspectionsBaseURL + filters;
-        
-        console.log (inspectionsUrl);
-        
+                
         $(
             // jQuery command to retrieve json data
             
-            $.getJSON(inspectionsUrl)
+            $.getJSON(url)
                 .done (function (data) {
                     // TODO:  add script to add data to the DOM
+                    
+                    $.each(data, function (i,v) {
+                        $("body").append(v.Username);
+                    })
                 })
             
             

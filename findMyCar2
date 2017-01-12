@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pothole Requests 60645</title>
+        <style>
+            p, h1 {font-family: helvetica;}
+            p {font-size:1.5em;line-height:1.5em; margin-left: 24px;}
+            pre {font-size: 2em;}
+            
+            div {background-color:lightgray; border: 1px solid black; border-radius: 6px;}
+            
+            .Pass {background-color: green;}
+            .Fail {background-color: red;}
+        </style>
+    </head>
+    <body>
+    <h1>Find My Car!</h1>
+    <div id="form">
+        <input type="text" id="txtPlate" placeholder="Enter your license plate"> 
+    </div>
+
+    <div id="results">
+    
+    </div>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        /*
+            This script retrieves pothole request data for zip 60645
+            from the City of Chicago Data Portal
+
+        */
+        //  variable to hold the returned data
+        var inspections;
+        
+        // base URL 
+        var baseURL = 'https://data.cityofchicago.org/resource/787j-mys9.json';
+        
+        // optional filters we're appending - date range and zip
+        var filters = '?zip=60645&status=Open';
+        
+        // full URL
+        var url = baseURL + filters;
+        
+        console.log (url);
+        
+        $(
+            // jQuery command to retrieve json data
+            
+            $.getJSON(url)
+                .done (function (data) {
+                    
+                   
+                    console.log(typeof data[0].creation_date);
+                    
+                    
+                    // loop through the records
+                    $.each (data , 
+                        function (index, value) {
+                            // append content to the body 
+                            var html = "<div>"
+                                + "<h2>" 
+                                + value.type_of_service_request
+                                + "</h2>"
+                                + "<p>" 
+                                + "Service Request Number: " 
+                                + value.service_request_number
+                                + "<br>"
+                                + value.creation_date
+                                + "<br>"
+                                + value.street_address 
+                                + "<br>"
+                                + "Status: " 
+                                + value.status
+                                + "</p>"
+                                + "</div>"
+                                + "<hr>";
+                           
+                           
+                            $("body").append(html);
+                        }
+                    );
+
+                })
+
+        )
+        
+        
+    </script>
+    </body>
+</html>
